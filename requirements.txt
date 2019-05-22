@@ -1,0 +1,4 @@
+requests ~= 2.12
+ntlm-auth
+requests_ntlm
+graphviz
