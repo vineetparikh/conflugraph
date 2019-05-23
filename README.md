@@ -6,11 +6,6 @@ Graph visualizer for page hierarchy of a Confluence space
 Uses Confluence REST API for fetching information on spaces. Authorized with NTLM (although it's possible to change authorization methods easily)
 Uses graphviz for graphical presentation
 
-[//]: # Example output
-[//]: # ==============
-
-[//]: # ![Example graph](examples/issue_graph_complex.png)
-
 Requirements:
 =============
 * Python 2.7+
