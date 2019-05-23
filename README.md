@@ -22,37 +22,8 @@ Usage:
 $ git clone https://github.com/vineetparikh/conflugraph.git
 $ cd conflugraph
 $ sudo -H pip install -r requirements.txt
-$ python jira-dependency-graph.py --user=your-jira-username --password=your-jira-password --jira=url-of-your-jira-site issue-key
+$ python confluence-graph.py --user=your-username --password=your-password --confluence=url-of-your-confluence-site --space=your-confluence-space-key
 ```
-
-```
-# e.g.:
-$ python jira-dependency-graph.py --user=pawelrychlik --password=s3cr3t --jira=https://your-company.jira.com JIRATICKET-718
-
-Fetching JIRATICKET-2451
-JIRATICKET-2451 <= is blocked by <= JIRATICKET-3853
-JIRATICKET-2451 <= is blocked by <= JIRATICKET-3968
-JIRATICKET-2451 <= is blocked by <= JIRATICKET-3126
-JIRATICKET-2451 <= is blocked by <= JIRATICKET-2977
-Fetching JIRATICKET-3853
-JIRATICKET-3853 => blocks => JIRATICKET-2451
-JIRATICKET-3853 <= relates to <= JIRATICKET-3968
-Fetching JIRATICKET-3968
-JIRATICKET-3968 => blocks => JIRATICKET-2451
-JIRATICKET-3968 => relates to => JIRATICKET-3853
-Fetching JIRATICKET-3126
-JIRATICKET-3126 => blocks => JIRATICKET-2451
-JIRATICKET-3126 => testing discovered => JIRATICKET-3571
-Fetching JIRATICKET-3571
-JIRATICKET-3571 <= discovered while testing <= JIRATICKET-3126
-Fetching JIRATICKET-2977
-JIRATICKET-2977 => blocks => JIRATICKET-2451
-
-Writing to issue_graph.png
-```
-Result:
-![Example result](examples/issue_graph.png)
-
 
 Advanced Usage:
 ===============
