@@ -31,7 +31,7 @@ Advanced Usage:
 List of all configuration options with descriptions:
 
 ```
-python jira-dependency-graph.py --help
+python confluence-graph.py --help
 ```
 
 ### Configuring Splines
@@ -44,5 +44,5 @@ $ python jira-dependency-graph.py --user=your-jira-username --password=your-jira
 
 ### Authentication
 
-This tool configures NTLM authentication, as this was required for testing with Cornell's Confluence system. However, it's fairly easy to port between authentication types.
+This tool configures NTLM authentication, as this was required for testing with Cornell's Confluence system. Since authentication types are integrated into request "sessions," porting between individual authentications is straightforward: I just don't know which ones would be valuable to include. At this point I'll most likely be adding basic authentication (BAuth) and NTLM authentication.
 
