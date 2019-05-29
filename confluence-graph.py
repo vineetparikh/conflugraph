@@ -86,8 +86,16 @@ def parse_args():
     parser.add_argument('-f', '--file', dest='image_file', default='conflu-graph', help='Filename to write image to')
     parser.add_argument('-s', '--space', dest='space_key', default=None, help='The Confluence space key')
     parser.add_argument('-l', '--splines', dest='splines', default='false', help='Boolean: whether to route edges around nodes or not (configurable for performance reasons)')
+    parser.add_argument('-a', '--auth', dest='auth', default='Basic', help='Authentication type (basic or NTLM)')
     return parser.parse_args()
 
+def configure_session(auth,user,password):
+    session = requests.Session()
+    if auth=='NTLM':
+        session.auth = HttpNtlmAuth('domain\\'+user,password) # Cornell uses ntlm auth, but this can be ported based on the requests library
+    else:
+        session.auth=(user,password)
+    return session
 
 def main():
     options = parse_args()
@@ -96,9 +104,8 @@ def main():
                 else raw_input('Username: ')
     password = options.password if options.password is not None \
                 else getpass.getpass('Password: ')
-    session = requests.Session()
-    session.auth = HttpNtlmAuth('domain\\'+user,password) # Cornell uses ntlm auth, but this can be ported based on the requests library
-
+    session = configure_session(options.auth,user,password)
+    
     confluence = ConfluSearch(options.confluence_url, session)
 
     graph = build_graph_data(options.space_key,confluence,options.splines)
