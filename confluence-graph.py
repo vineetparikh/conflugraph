@@ -9,6 +9,7 @@ import getpass
 import textwrap
 
 import requests
+from requests.auth import HTTPBasicAuth
 from requests_ntlm import HttpNtlmAuth
 from graphviz import Digraph
 
@@ -105,7 +106,7 @@ def main():
     password = options.password if options.password is not None \
                 else getpass.getpass('Password: ')
     session = configure_session(options.auth,user,password)
-    
+
     confluence = ConfluSearch(options.confluence_url, session)
 
     graph = build_graph_data(options.space_key,confluence,options.splines)
