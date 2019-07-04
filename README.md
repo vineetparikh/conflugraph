@@ -14,8 +14,6 @@ Requirements:
 * [requests-ntlm](https://pypi.org/project/requests_ntlm/)
 * [graphviz](https://pypi.org/project/graphviz/)
 
-Docker support is still a work in progress
-
 Usage:
 ======
 ```bash
@@ -23,6 +21,13 @@ $ git clone https://github.com/vineetparikh/conflugraph.git
 $ cd conflugraph
 $ sudo -H pip install -r requirements.txt
 $ python confluence-graph.py --user=your-username --password=your-password --confluence=url-of-your-confluence-site --space=your-confluence-space-key
+```
+Docker support should work with
+```bash
+$ git clone https://github.com/vineetparikh/conflugraph.git
+$ cd conflugraph
+$ docker build -t conflu .
+$ docker run -v $PWD/out:/out conflu python confluence-graph.py (...)
 ```
 
 Advanced Usage:
@@ -45,4 +50,3 @@ $ python confluence-graph.py --user=your-username --password=your-password --con
 ### Authentication
 
 This tool configures NTLM authentication, as this was required for testing with Cornell's Confluence system. Since authentication types are integrated into request "sessions," porting between individual authentications is straightforward: I just don't know which ones would be valuable to include. At this point I'll most likely be adding basic authentication (BAuth) and NTLM authentication.
-
