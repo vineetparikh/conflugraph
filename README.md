@@ -38,7 +38,7 @@ python confluence-graph.py --help
 While this doesn't matter as much with small graphs, as graphs scale with nodes and edges, edges tend to overlap nodes rather annoyingly. Fixing this, especially for bigger graphs, means configuring splines, but this vastly increases rendering time.
 
 ```bash
-$ python jira-dependency-graph.py --user=your-jira-username --password=your-jira-password --jira=url-of-your-jira-site --exclude-link 'is required by' --exclude-link 'duplicates' issue-key
+$ python confluence-graph.py --user=your-username --password=your-password --confluence=url-of-your-confluence-site --space=your-confluence-space-key --splines=(True or False)
 ```
 
 
