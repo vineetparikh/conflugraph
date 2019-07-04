@@ -9,6 +9,7 @@ import getpass
 import textwrap
 
 import requests
+from requests.auth import HTTPBasicAuth
 from requests_ntlm import HttpNtlmAuth
 from graphviz import Digraph
 
@@ -86,6 +87,7 @@ def parse_args():
     parser.add_argument('-f', '--file', dest='image_file', default='conflu-graph', help='Filename to write image to')
     parser.add_argument('-s', '--space', dest='space_key', default=None, help='The Confluence space key')
     parser.add_argument('-l', '--splines', dest='splines', default='false', help='Boolean: whether to route edges around nodes or not (configurable for performance reasons)')
+    parser.add_argument('-a','--auth-type', dest='auth_type', default='basic', help='Type of authentication (basic or ntlm)')
     return parser.parse_args()
 
 
@@ -97,7 +99,10 @@ def main():
     password = options.password if options.password is not None \
                 else getpass.getpass('Password: ')
     session = requests.Session()
-    session.auth = HttpNtlmAuth('domain\\'+user,password) # Cornell uses ntlm auth, but this can be ported based on the requests library
+    if options.auth_type=='basic':
+        session.auth = HTTPBasicAuth(user,password)
+    else:
+        session.auth = HttpNtlmAuth('domain\\'+user,password) # Cornell uses ntlm auth, but this can be ported based on the requests library
 
     confluence = ConfluSearch(options.confluence_url, session)
 
