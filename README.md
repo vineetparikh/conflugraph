@@ -3,8 +3,7 @@ conflugraph
 
 Graph visualizer for page hierarchy of a Confluence space
 
-Uses Confluence REST API for fetching information on spaces. Authorized with NTLM (although it's possible to change authorization methods easily)
-Uses graphviz for graphical presentation
+Uses Confluence REST API for fetching information on spaces. Authorized with NTLM (although it's possible to change authorization methods easily), and uses graphviz for graphical presentation
 
 Requirements:
 =============
